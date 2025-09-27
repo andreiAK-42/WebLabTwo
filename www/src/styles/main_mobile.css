@@ -1,0 +1,55 @@
+@media (max-width: 1600px) {
+    body, html {
+        width: 100%;
+        height: 100%;
+        background-color: #1B1A17;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+    }
+
+    p, h1, a, input {
+        margin: 0;
+    }
+
+    .add-task-container {
+        width: 85%;
+        margin: 20px;
+        padding: 0;
+        display: flex;
+        height: 70px;
+    }
+
+    .add-task-inputs-container {
+        width: 77%;
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row wrap;
+    }
+
+    .add-task-inputs-container input {
+        border-color: #FF8303;
+        border-radius: 4px;
+        height: 32px;
+        width: 100%;
+        max-height: 32px;
+        background-color: #1F1E1B;
+        color: #F0E3CAA3;
+        border-style: solid;
+        box-sizing: border-box;
+    }
+
+    .add-task-button {
+        width: 70px;
+        height: 70px;
+        background: url("/www/assets/images/Property\ 1=Default.png");
+        margin-left: 10px;
+    }
+    
+    .add-task-button:hover {
+        background: url("/www/assets/images/Property\ 1=Variant2_hover.png");
+        cursor: pointer;
+        
+    }
+}
