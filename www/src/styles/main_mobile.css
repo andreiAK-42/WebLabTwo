@@ -10,6 +10,11 @@
         margin: 0;
         color: #FFFFFF;
     }
+    
+
+    .share-task-button, .edit-task-button, .about-task-button:hover {
+        cursor: pointer;
+    }
 
     .add-task-container {
         width: 85%;
@@ -76,4 +81,98 @@
         background-color: #FF8303;
         border-radius: 3px;
     }
+
+    .tasks-container {
+        margin: 20px;
+        width: 85%;
+        height: auto;
+        display: grid;
+        row-gap: 10px;
+    }
+
+    .task-card {
+        width: 100%;
+        height: 72px;
+        background-color: #242320;
+        border: 2px solid;
+        border-color: #A35709;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 8px;
+    }
+
+    .delete-button-task-card {
+        width: 32px;
+        height: 32px;
+        background: url("/WebLabTwo/www/assets/images/Close\ 1=Default.png");
+        margin-right: 10px;
+    }
+
+    .delete-button-task-card:hover {
+        cursor: pointer;
+        background: url("/WebLabTwo/www/assets/images/Close\ 1=Variant2_hover.png");
+    }
+
+    .text-task-card {
+        margin-left: 10px;
+        font-family: "Inter";
+        font-size: 14px;
+        color: #F0E3CA;
+    }
+
+    .text-task-card h1 {
+        font-size: 22px;
+        color: #F0E3CA;
+    }
+
+    .menu-task-container {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        display: flex;
+        height: 36px;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+    .share-task-button {
+        margin-left: 60%;
+        width: 36px;
+        height: 36px;
+        background: url("/WebLabTwo/www/assets/images/Share1=Default.png");
+    }
+
+    .share-task-button:hover {
+        background: url("/WebLabTwo/www/assets/images/Share\ 1=Variant2_hover.png");
+    }
+
+    .edit-task-button {
+        width: 36px;
+        height: 36px;
+        background: url("/WebLabTwo/www/assets/images/Edit\ 1=Default.png");
+    }
+
+    .edit-task-button:hover {
+        background: url("/WebLabTwo/www/assets/images/Edit\ 1=Variant2_hover.png");
+    }
+
+    .about-task-button {
+        width: 36px;
+        height: 36px;
+        background: url("/WebLabTwo/www/assets/images/About\ 1=Default.png");
+    }
+
+    .about-task-button:hover {
+        background: url("/WebLabTwo/www/assets/images/About\ 1=Variant2_hover.png");
+    }
+
+
+
+
+
+
+
+
+
+
 }
