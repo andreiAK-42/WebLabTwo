@@ -4,13 +4,11 @@
         height: 100%;
         background-color: #1B1A17;
         margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: start;
     }
 
     p, h1, a, input {
         margin: 0;
+        color: #FFFFFF;
     }
 
     .add-task-container {
@@ -41,15 +39,41 @@
     }
 
     .add-task-button {
-        width: 70px;
+        width: 72px;
         height: 70px;
-        background: url("/www/assets/images/Property\ 1=Default.png");
+        background: url("/WebLabTwo/www/assets/images/Property\ 1=Default.png");
         margin-left: 10px;
     }
     
     .add-task-button:hover {
-        background: url("/www/assets/images/Property\ 1=Variant2_hover.png");
-        cursor: pointer;
-        
+        background: url("/WebLabTwo/www/assets/images/Property\ 1=Variant2_hover.png");
+        cursor: pointer;  
+    }
+
+    .no-task-container {
+        margin-top: 15%;
+        width: 100%;
+        display: block;
+    }
+
+    .text-no-task-container {
+        margin: auto;
+        width: 100px;
+    }
+
+    .text-no-task-container p {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+    .wall-no-task {
+        margin: auto;
+        width: 60px;
+        height: 3px;
+        background-color: #FF8303;
+        border-radius: 3px;
     }
 }
