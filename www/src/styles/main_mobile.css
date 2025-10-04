@@ -174,5 +174,14 @@
 
 
 
+    /* Форма подтверждения удаления тасок */
 
+    .confirm-delete-task-body {
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.4;
+        position: absolute;
+        top: 0;
+    }
 }
