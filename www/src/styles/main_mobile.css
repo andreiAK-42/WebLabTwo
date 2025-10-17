@@ -127,10 +127,12 @@
     }
 
     .menu-task-container {
+        visibility: hidden;
+        height: 0;
         margin-top: 5px;
         margin-bottom: 10px;
         display: flex;
-        height: 36px;
+       /* height: 36px;*/
         justify-content: space-between;
         align-items: end;
     }
