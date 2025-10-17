@@ -12,7 +12,7 @@
     }
     
 
-    .share-task-button, .edit-task-button, .about-task-button:hover {
+    .share-task-button, .edit-task-button, .about-task-button, .task-card:hover {
         cursor: pointer;
     }
 
@@ -132,9 +132,13 @@
         margin-top: 5px;
         margin-bottom: 10px;
         display: flex;
-       /* height: 36px;*/
         justify-content: space-between;
         align-items: end;
+    }
+    
+    .menu-task-container.visible {
+        visibility: visible;
+        height: 36px;
     }
 
     .share-task-button {
