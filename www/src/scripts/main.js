@@ -29,9 +29,12 @@ add_task_button.addEventListener('click', function () {
     taskCardContainer.id = tasks.length
 
     const taskCard = taskCardContainer.querySelector('.task-card')
-    taskCard.addEventListener('click', function () {
-        const menuTaskContainer = taskCardContainer.querySelector('.menu-task-container')
-        menuTaskContainer.classList.toggle('visible')
+    taskCard.addEventListener('click', function (event) {
+
+        if (event.target == taskCard) {
+            const menuTaskContainer = taskCardContainer.querySelector('.menu-task-container')
+            menuTaskContainer.classList.toggle('visible')
+        }
     })
 
     tasks.push(tasks.length)
