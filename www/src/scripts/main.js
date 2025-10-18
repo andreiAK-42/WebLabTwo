@@ -2,8 +2,14 @@ const show_task_menu = document.getElementsByClassName(".add-task-inputs-contain
 
 const add_task_button = document.querySelector('.add-task-button')
 const tasksList = document.querySelector('.tasks-container')
-var tasks = []
+const blackBackground = document.querySelector('.black-background')
 
+const deleteTaskMenu = document.querySelector('.delete-task-container')
+const confirmDeleteTaskButton = document.querySelector('.confirm-delete-task-button')
+const cancelDeleteTaskButton = document.querySelector('.cancel-delete-task-button')
+
+var tasks = []
+var targetTaskDelete = -1
 
 
 add_task_button.addEventListener('click', function () {
@@ -35,6 +41,13 @@ add_task_button.addEventListener('click', function () {
             const menuTaskContainer = taskCardContainer.querySelector('.menu-task-container')
             menuTaskContainer.classList.toggle('visible')
         }
+
+        if (event.target.className == "delete-button-task-card") {
+            targetTaskDelete = tasks.length - 1
+
+            deleteTaskMenu.style.visibility = "visible"
+            blackBackground.style.visibility = "visible"
+        }
     })
 
     tasks.push(tasks.length)
@@ -48,3 +61,21 @@ add_task_button.addEventListener('click', function () {
     }
 
 });
+
+
+confirmDeleteTaskButton.addEventListener('click', function (event) {
+    if (targetTaskDelete != -1 && tasks.indexOf(targetTaskDelete) != -1) {
+        const targetTask = document.getElementById(targetTaskDelete)
+        targetTask.remove()
+    }
+
+    targetTaskDelete = -1
+    deleteTaskMenu.style.visibility = "hidden"
+    blackBackground.style.visibility = "hidden"
+})
+
+cancelDeleteTaskButton.addEventListener('click', function (event) {
+    targetTaskDelete = -1
+    deleteTaskMenu.style.visibility = "hidden"
+    blackBackground.style.visibility = "hidden"
+})
