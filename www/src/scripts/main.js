@@ -3,13 +3,19 @@ const show_task_menu = document.getElementsByClassName(".add-task-inputs-contain
 const add_task_button = document.querySelector('.add-task-button')
 const tasksList = document.querySelector('.tasks-container')
 const blackBackground = document.querySelector('.black-background')
+const shareMenu = document.querySelector(".share-menu-container")
 
 const deleteTaskMenu = document.querySelector('.delete-task-container')
 const confirmDeleteTaskButton = document.querySelector('.confirm-delete-task-button')
 const cancelDeleteTaskButton = document.querySelector('.cancel-delete-task-button')
 
+
+const shareButtons = document.querySelectorAll('.round-share-button')
+
+
 var tasks = []
 var targetTaskDelete = -1
+var targetTaskShare = -1
 
 
 add_task_button.addEventListener('click', function () {
@@ -50,16 +56,40 @@ add_task_button.addEventListener('click', function () {
         }
     })
 
+    const shareTask = taskCardContainer.querySelector('.share-task-button') 
+    shareTask.addEventListener('click', function (event) {
+        targetTaskShare = targetTaskDelete = tasks.length - 1
+        blackBackground.style.visibility = "visible"
+        shareMenu.style.visibility = "visible"
+        shareMenu.style.height = "76px"
+    })
+
     tasks.push(tasks.length)
 
     tasksList.appendChild(taskCardContainer)
 
     if (tasks && tasks.length == 1) {
         const element = document.querySelector(".no-task-container")
-        element.style.display = "none"
+        element.style.visibility = "hidden"
         element.style.height = "0"
     }
 
+});
+
+shareButtons.forEach(shareButton => {
+    shareButton.addEventListener('click', function handleClick(event) {
+        if (targetTaskDelete != -1 && tasks.indexOf(targetTaskDelete) != -1) {
+            if (shareButton.id == "copy") {
+                navigator.clipboard.writeText(`http:127.0.0.1:3000/api/taskId=${targetTaskShare}`)
+            }
+            else {
+                blackBackground.style.visibility = "hidden"
+                shareMenu.style.visibility = "hidden"
+                shareMenu.style.height = "76px"
+                window.open(`https://${shareButton.id}.com/api/shareTaskId=${targetTaskShare}`, `${shareButton.id}`)
+            }
+        }
+    });
 });
 
 
@@ -69,9 +99,18 @@ confirmDeleteTaskButton.addEventListener('click', function (event) {
         targetTask.remove()
     }
 
+    tasks.splice(tasks.indexOf(targetTaskDelete), 1)
+
     targetTaskDelete = -1
     deleteTaskMenu.style.visibility = "hidden"
     blackBackground.style.visibility = "hidden"
+
+
+    if (tasks && tasks.length == 0) {
+        const element = document.querySelector(".no-task-container")
+        element.style.visibility = "visible"
+        element.style.height = "0"
+    }
 })
 
 cancelDeleteTaskButton.addEventListener('click', function (event) {
