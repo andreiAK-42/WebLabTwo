@@ -1,95 +1,93 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Главная</title>
-        <link rel="stylesheet" href="../src/styles/main_mobile.css">
+  <head>
+    <title>Главная</title>
+    <link rel="stylesheet" href="../src/styles/main_mobile.css" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet">
-    </head>
-    <body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="add-task-container">
+      <div class="add-task-inputs-container">
+        <input id="inputTaskTitle" placeholder="Title..." />
+        <input id="inputTaskAbout" placeholder="About..." />
+      </div>
 
-        <div class="add-task-container">
-            <div class="add-task-inputs-container">
-                <input id="inputTaskTitle" placeholder="Title...">
-                <input id="inputTaskAbout" placeholder="About...">
-            </div>
+      <div class="add-task-button"></div>
+    </div>
 
-            <div class="add-task-button"></div>
+    <div class="tasks-container"></div>
+
+    <div class="no-task-container">
+      <div class="wall-no-task"></div>
+      <div class="text-no-task-container">
+        <p>No tasks</p>
+      </div>
+      <div class="wall-no-task"></div>
+    </div>
+
+    <div class="black-background"></div>
+
+    <div class="delete-task-container">
+      <div class="delete-task-horizontal-wall"></div>
+      <h1>Delete this task?</h1>
+      <div class="delete-task-buttons-container">
+        <div class="delete-task-buttons">
+          <div class="confirm-delete-task-button">
+            <p>Yes</p>
+          </div>
+          <div class="cancel-delete-task-button">
+            <p>No</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edit-task-container">
+      <div class="edit-task">
+        <div class="edit-task-inputs-container">
+          <input id="inputEditTaskTitle" placeholder="Mini Input..." />
+          <input id="inputEditTaskAbout" placeholder="Max Input..." />
         </div>
 
-        <div class="tasks-container"></div>
-
-        <div class="no-task-container">
-            <div class="wall-no-task"></div>
-            <div class="text-no-task-container">
-                <p>No tasks</p>
-            </div>
-            <div class="wall-no-task"></div>
+        <div class="edit-buttons-container">
+          <div class="cancel-edit-task-button">
+            <p>Cancel</p>
+          </div>
+          <div class="confirm-edit-task-button">
+            <p>Save</p>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="black-background"></div>
-        
-        <div class="delete-task-container">
-            <div class="delete-task-horizontal-wall"></div>
-            <h1>Delete this task?</h1>
-            <div class="delete-task-buttons-container">
-                <div class="delete-task-buttons">
-                    <div class="confirm-delete-task-button">
-                        <p>Yes</p>
-                    </div>
-                    <div class="cancel-delete-task-button">
-                        <p>No</p>
-                    </div>
-                </div>
-            </div>
+    <div class="share-menu-container">
+      <div class="share-menu">
+        <div id="copy" class="round-share-button">
+          <img src="../assets/images/Content copy.png" />
         </div>
-
-        <div class="edit-task-container">
-            <div class="edit-task">
-                <div class="edit-task-inputs-container">
-                    <input id="inputEditTaskTitle" placeholder="Mini Input...">
-                    <input id="inputEditTaskAbout" placeholder="Max Input...">
-                </div>
-                
-                <div class="edit-buttons-container">
-                    <div class="cancel-edit-task-button">
-                        <p>Cancel</p>
-                    </div>
-                    <div class="confirm-edit-task-button">
-                        <p>Save</p>
-                    </div>
-                </div>
-            </div>
+        <div id="vk" class="round-share-button">
+          <img src="../assets/images/vk-svgrepo-com 1.png" />
         </div>
-
-
-
-
-        <div class="share-menu-container">
-            <div class="share-menu">
-                <div id="copy" class="round-share-button">
-                    <img src="../assets/images/Content copy.png">
-                </div>
-                <div id="vk" class="round-share-button">
-                    <img src="../assets/images/vk-svgrepo-com 1.png">
-                </div>
-                <div id="telegram" class="round-share-button">
-                    <img src="../assets/images/telegram-svgrepo-com 1.png">
-                </div>
-                <div id="whatsapp" class="round-share-button">
-                    <img src="../assets/images/whatsapp-svgrepo-com (1) 1.png">
-                </div>
-                <div id="facebook" class="round-share-button">
-                    <img src="../assets/images/facebook-alt-svgrepo-com 1.png">
-                </div>
-            </div>
+        <div id="telegram" class="round-share-button">
+          <img src="../assets/images/telegram-svgrepo-com 1.png" />
         </div>
-        
-
-    </body>
-    <script type="text/javascript" src="/WebLabTwo/www/src/scripts/main.js"> </script>
+        <div id="whatsapp" class="round-share-button">
+          <img src="../assets/images/whatsapp-svgrepo-com (1) 1.png" />
+        </div>
+        <div id="facebook" class="round-share-button">
+          <img src="../assets/images/facebook-alt-svgrepo-com 1.png" />
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    type="text/javascript"
+    src="/WebLabTwo/www/src/scripts/main.js"
+  ></script>
 </html>

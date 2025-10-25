@@ -1,155 +1,172 @@
-const show_task_menu = document.getElementsByClassName(".add-task-inputs-container")
+const show_task_menu = document.getElementsByClassName(
+  ".add-task-inputs-container"
+);
 
-const add_task_button = document.querySelector('.add-task-button')
-const tasksList = document.querySelector('.tasks-container')
-const blackBackground = document.querySelector('.black-background')
-const shareMenu = document.querySelector(".share-menu-container")
-const editMenu = document.querySelector(".edit-task-container")
+const add_task_button = document.querySelector(".add-task-button");
+const tasksList = document.querySelector(".tasks-container");
+const blackBackground = document.querySelector(".black-background");
+const shareMenu = document.querySelector(".share-menu-container");
+const editMenu = document.querySelector(".edit-task-container");
 
-const deleteTaskMenu = document.querySelector('.delete-task-container')
-const confirmDeleteTaskButton = document.querySelector('.confirm-delete-task-button')
-const cancelDeleteTaskButton = document.querySelector('.cancel-delete-task-button')
+const deleteTaskMenu = document.querySelector(".delete-task-container");
+const confirmDeleteTaskButton = document.querySelector(
+  ".confirm-delete-task-button"
+);
+const cancelDeleteTaskButton = document.querySelector(
+  ".cancel-delete-task-button"
+);
 
+const shareButtons = document.querySelectorAll(".round-share-button");
 
-const shareButtons = document.querySelectorAll('.round-share-button')
+const confirmEditTaskButton = document.querySelector(
+  ".confirm-edit-task-button"
+);
+const cancelEditTaskButton = document.querySelector(".cancel-edit-task-button");
 
-const confirmEditTaskButton = document.querySelector('.confirm-edit-task-button')
-const cancelEditTaskButton = document.querySelector('.cancel-edit-task-button')
-
-var tasks = []
-var targetTaskDelete = -1
-var targetTaskShare = -1
-var targetTaskEdit = -1
-
+var tasks = [];
+var targetTaskDelete = -1;
+var targetTaskShare = -1;
+var targetTaskEdit = -1;
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadTasksFromLocalStorage()
+  loadTasksFromLocalStorage();
 });
 
+add_task_button.addEventListener("click", function () {
+  const taskTitle = document.getElementById("inputTaskTitle").value;
+  const taskAbout = document.getElementById("inputTaskAbout").value;
+  const taskId = Math.floor(Date.now() / 1000);
 
-add_task_button.addEventListener('click', function () {
-    const taskTitle = document.getElementById("inputTaskTitle").value
-    const taskAbout = document.getElementById("inputTaskAbout").value
-    const taskId = Math.floor(Date.now() / 1000)
-
-    addTaskToUI(taskTitle, taskAbout, taskId)
-    addTaskToLocalStorage(taskTitle, taskAbout, taskId)
+  addTaskToUI(taskTitle, taskAbout, taskId);
+  addTaskToLocalStorage(taskTitle, taskAbout, taskId);
 });
 
-shareButtons.forEach(shareButton => {
-    shareButton.addEventListener('click', function handleClick(event) {
-        if (targetTaskDelete != -1 && tasks.indexOf(targetTaskDelete) != -1) {
-            if (shareButton.id == "copy") {
-                navigator.clipboard.writeText(`http:127.0.0.1:3000/api/taskId=${targetTaskShare}`)
-            }
-            else {
-                blackBackground.style.visibility = "hidden"
-                shareMenu.style.visibility = "hidden"
-                shareMenu.style.height = "76px"
-                window.open(`https://${shareButton.id}.com/api/shareTaskId=${targetTaskShare}`, `${shareButton.id}`)
-            }
-        }
-    });
-});
-
-
-confirmDeleteTaskButton.addEventListener('click', function (event) {
-    if (targetTaskDelete != -1) {
-        const targetTask = document.getElementById(targetTaskDelete)
-        targetTask.remove()
+shareButtons.forEach((shareButton) => {
+  shareButton.addEventListener("click", function handleClick(event) {
+    if (targetTaskDelete != -1 && tasks.indexOf(targetTaskDelete) != -1) {
+      if (shareButton.id == "copy") {
+        navigator.clipboard.writeText(
+          `http:127.0.0.1:3000/api/taskId=${targetTaskShare}`
+        );
+      } else {
+        blackBackground.style.visibility = "hidden";
+        shareMenu.style.visibility = "hidden";
+        shareMenu.style.height = "76px";
+        window.open(
+          `https://${shareButton.id}.com/api/shareTaskId=${targetTaskShare}`,
+          `${shareButton.id}`
+        );
+      }
     }
+  });
+});
 
-    tasks.splice(tasks.findIndex(task => task.id === targetTaskDelete), 1)
-    deleteFromLocalStorage(targetTaskDelete)
+confirmDeleteTaskButton.addEventListener("click", function (event) {
+  if (targetTaskDelete != -1) {
+    const targetTask = document.getElementById(targetTaskDelete);
+    targetTask.remove();
+  }
 
-    targetTaskDelete = -1
-    deleteTaskMenu.style.visibility = "hidden"
-    blackBackground.style.visibility = "hidden"
+  tasks.splice(
+    tasks.findIndex((task) => task.id === targetTaskDelete),
+    1
+  );
+  deleteFromLocalStorage(targetTaskDelete);
 
-    if (tasks && tasks.length == 0) {
-        const element = document.querySelector(".no-task-container")
-        element.style.visibility = "visible"
-        element.style.height = "0"
-    }
-})
+  targetTaskDelete = -1;
+  deleteTaskMenu.style.visibility = "hidden";
+  blackBackground.style.visibility = "hidden";
 
-cancelDeleteTaskButton.addEventListener('click', function (event) {
-    targetTaskDelete = -1
-    deleteTaskMenu.style.visibility = "hidden"
-    blackBackground.style.visibility = "hidden"
-})
+  if (tasks && tasks.length == 0) {
+    const element = document.querySelector(".no-task-container");
+    element.style.visibility = "visible";
+    element.style.height = "0";
+  }
+});
 
+cancelDeleteTaskButton.addEventListener("click", function (event) {
+  targetTaskDelete = -1;
+  deleteTaskMenu.style.visibility = "hidden";
+  blackBackground.style.visibility = "hidden";
+});
 
-confirmEditTaskButton.addEventListener('click', function (event) {
-    const taskTitle = document.getElementById("inputEditTaskTitle").value
-    const taskAbout = document.getElementById("inputEditTaskAbout").value
+confirmEditTaskButton.addEventListener("click", function (event) {
+  const taskTitle = document.getElementById("inputEditTaskTitle").value;
+  const taskAbout = document.getElementById("inputEditTaskAbout").value;
 
-    const targetTask = document.getElementById(targetTaskEdit)
-    targetTask.remove()
+  const targetTask = document.getElementById(targetTaskEdit);
+  targetTask.remove();
 
-    tasks.splice(tasks.findIndex(task => task.id === targetTaskEdit), 1)
-    deleteFromLocalStorage(targetTaskEdit)
-    addTaskToUI(taskTitle, taskAbout, targetTaskEdit)
-    addTaskToLocalStorage(taskTitle, taskAbout, targetTaskEdit)
+  tasks.splice(
+    tasks.findIndex((task) => task.id === targetTaskEdit),
+    1
+  );
+  deleteFromLocalStorage(targetTaskEdit);
+  addTaskToUI(taskTitle, taskAbout, targetTaskEdit);
+  addTaskToLocalStorage(taskTitle, taskAbout, targetTaskEdit);
 
-    targetTaskEdit = -1
-    editMenu.style.visibility = "hidden"
-    editMenu.style.height = "0"
-    blackBackground.style.visibility = "hidden"
-    blackBackground.style.height = "0"
-})
+  targetTaskEdit = -1;
+  editMenu.style.visibility = "hidden";
+  editMenu.style.height = "0";
+  blackBackground.style.visibility = "hidden";
+  blackBackground.style.height = "0";
+});
 
-cancelEditTaskButton.addEventListener('click', function (event) {
-    targetTaskEdit = -1
-    editMenu.style.visibility = "hidden"
-    editMenu.style.height = "0"
-    blackBackground.style.visibility = "hidden"
-    blackBackground.style.height = "0"
-})
+cancelEditTaskButton.addEventListener("click", function (event) {
+  targetTaskEdit = -1;
+  editMenu.style.visibility = "hidden";
+  editMenu.style.height = "0";
+  blackBackground.style.visibility = "hidden";
+  blackBackground.style.height = "0";
+});
 
 function loadTasksFromLocalStorage() {
-    const localTasksString = window.localStorage.getItem('saveTaskList')
+  const localTasksString = window.localStorage.getItem("saveTaskList");
 
-    if (localTasksString) {
-        const localTasksArray = JSON.parse(localTasksString)
+  if (localTasksString) {
+    const localTasksArray = JSON.parse(localTasksString);
 
-        localTasksArray.forEach(task => {
-            addTaskToUI(task.taskTitle, task.taskAbout, task.id)
-        });
-    }
+    localTasksArray.forEach((task) => {
+      addTaskToUI(task.taskTitle, task.taskAbout, task.id);
+    });
+  }
 }
 
 function deleteFromLocalStorage(id) {
-    const localTasksString = window.localStorage.getItem('saveTaskList')
+  const localTasksString = window.localStorage.getItem("saveTaskList");
 
-    if (localTasksString) {
-        const localTasksArray = JSON.parse(localTasksString)
+  if (localTasksString) {
+    const localTasksArray = JSON.parse(localTasksString);
 
-        localTasksArray.splice(localTasksArray.findIndex(task => task.id === id), 1)
-        window.localStorage.setItem('saveTaskList', JSON.stringify(localTasksArray))
-    }
+    localTasksArray.splice(
+      localTasksArray.findIndex((task) => task.id === id),
+      1
+    );
+    window.localStorage.setItem(
+      "saveTaskList",
+      JSON.stringify(localTasksArray)
+    );
+  }
 }
 
 function addTaskToLocalStorage(taskTitle, taskAbout, id) {
-    const localTasksString = window.localStorage.getItem('saveTaskList')
-    var localTasksArray = []
+  const localTasksString = window.localStorage.getItem("saveTaskList");
+  var localTasksArray = [];
 
-    if (localTasksString) {
-        localTasksArray = JSON.parse(localTasksString)
+  if (localTasksString) {
+    localTasksArray = JSON.parse(localTasksString);
+  } else {
+    localTasksArray = [];
+  }
 
-    }
-    else {
-        localTasksArray = []
-    }
-
-    localTasksArray.push({ id: id, taskTitle: taskTitle, taskAbout: taskAbout })
-    window.localStorage.setItem('saveTaskList', JSON.stringify(localTasksArray))
+  localTasksArray.push({ id: id, taskTitle: taskTitle, taskAbout: taskAbout });
+  window.localStorage.setItem("saveTaskList", JSON.stringify(localTasksArray));
 }
 
 function addTaskToUI(taskTitle, taskAbout, id) {
-    const taskCardContainer = document.createElement("div")
-    taskCardContainer.className = "task-card-container"
-    taskCardContainer.innerHTML = `
+  const taskCardContainer = document.createElement("div");
+  taskCardContainer.className = "task-card-container";
+  taskCardContainer.innerHTML = `
         <div class="task-card">
             <div class="text-task-card">
                 <h1>${taskTitle}</h1>
@@ -162,49 +179,50 @@ function addTaskToUI(taskTitle, taskAbout, id) {
             <div class="about-task-button"></div>
             <div class="edit-task-button"></div>
         </div>
-    `
-    taskCardContainer.id = id
+    `;
+  taskCardContainer.id = id;
 
-    const taskCard = taskCardContainer.querySelector('.task-card')
-    taskCard.addEventListener('click', function (event) {
-
-        if (event.target == taskCard) {
-            const menuTaskContainer = taskCardContainer.querySelector('.menu-task-container')
-            menuTaskContainer.classList.toggle('visible')
-        }
-
-        if (event.target.className == "delete-button-task-card") {
-            targetTaskDelete = id
-
-            deleteTaskMenu.style.visibility = "visible"
-            blackBackground.style.visibility = "visible"
-        }
-    })
-
-    const shareTask = taskCardContainer.querySelector('.share-task-button')
-    shareTask.addEventListener('click', function (event) {
-        targetTaskShare = targetTaskDelete = id
-        blackBackground.style.visibility = "visible"
-        shareMenu.style.visibility = "visible"
-        shareMenu.style.height = "76px"
-    })
-
-    const editTask = taskCardContainer.querySelector('.edit-task-button')
-    editTask.addEventListener('click', function (event) {
-        targetTaskEdit = targetTaskDelete = id
-        blackBackground.style.visibility = "visible"
-
-        editMenu.style.visibility = "visible"
-        editMenu.style.height = "80%"
-    })
-
-    tasks.push({ id: id, taskTitle: taskTitle, taskAbout: taskAbout })
-
-    tasksList.appendChild(taskCardContainer)
-
-    if (tasks && tasks.length == 1) {
-        const element = document.querySelector(".no-task-container")
-        element.style.visibility = "hidden"
-        element.style.height = "0"
+  const taskCard = taskCardContainer.querySelector(".task-card");
+  taskCard.addEventListener("click", function (event) {
+    if (event.target == taskCard) {
+      const menuTaskContainer = taskCardContainer.querySelector(
+        ".menu-task-container"
+      );
+      menuTaskContainer.classList.toggle("visible");
     }
+
+    if (event.target.className == "delete-button-task-card") {
+      targetTaskDelete = id;
+
+      deleteTaskMenu.style.visibility = "visible";
+      blackBackground.style.visibility = "visible";
+    }
+  });
+
+  const shareTask = taskCardContainer.querySelector(".share-task-button");
+  shareTask.addEventListener("click", function (event) {
+    targetTaskShare = targetTaskDelete = id;
+    blackBackground.style.visibility = "visible";
+    shareMenu.style.visibility = "visible";
+    shareMenu.style.height = "76px";
+  });
+
+  const editTask = taskCardContainer.querySelector(".edit-task-button");
+  editTask.addEventListener("click", function (event) {
+    targetTaskEdit = targetTaskDelete = id;
+    blackBackground.style.visibility = "visible";
+
+    editMenu.style.visibility = "visible";
+    editMenu.style.height = "80%";
+  });
+
+  tasks.push({ id: id, taskTitle: taskTitle, taskAbout: taskAbout });
+
+  tasksList.appendChild(taskCardContainer);
+
+  if (tasks && tasks.length == 1) {
+    const element = document.querySelector(".no-task-container");
+    element.style.visibility = "hidden";
+    element.style.height = "0";
+  }
 }
