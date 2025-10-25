@@ -50,6 +50,7 @@
         height: 70px;
         background: url("/WebLabTwo/www/assets/images/Property\ 1=Default.png");
         margin-left: 10px;
+        background-repeat: no-repeat;
     }
     
     .add-task-button:hover {
@@ -197,6 +198,24 @@
         left: 0;
     }
     
+    .edit-task-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .edit-task-inputs-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .edit-buttons-container {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+    }
+
     .delete-task-container {
         visibility: hidden;
         height: 0;
