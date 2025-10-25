@@ -4,6 +4,7 @@ const add_task_button = document.querySelector('.add-task-button')
 const tasksList = document.querySelector('.tasks-container')
 const blackBackground = document.querySelector('.black-background')
 const shareMenu = document.querySelector(".share-menu-container")
+const editMenu = document.querySelector(".edit-task-container")
 
 const deleteTaskMenu = document.querySelector('.delete-task-container')
 const confirmDeleteTaskButton = document.querySelector('.confirm-delete-task-button')
@@ -12,9 +13,13 @@ const cancelDeleteTaskButton = document.querySelector('.cancel-delete-task-butto
 
 const shareButtons = document.querySelectorAll('.round-share-button')
 
+const confirmEditTaskButton = document.querySelector('.confirm-edit-task-button')
+const cancelEditTaskButton = document.querySelector('.cancel-edit-task-button')
+
 var tasks = []
 var targetTaskDelete = -1
 var targetTaskShare = -1
+var targetTaskEdit = -1
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -72,6 +77,34 @@ cancelDeleteTaskButton.addEventListener('click', function (event) {
     targetTaskDelete = -1
     deleteTaskMenu.style.visibility = "hidden"
     blackBackground.style.visibility = "hidden"
+})
+
+
+confirmEditTaskButton.addEventListener('click', function (event) {
+    const taskTitle = document.getElementById("inputEditTaskTitle").value
+    const taskAbout = document.getElementById("inputEditTaskAbout").value
+
+    const targetTask = document.getElementById(targetTaskEdit)
+    targetTask.remove()
+
+    tasks.splice(tasks.findIndex(task => task.id === targetTaskEdit), 1)
+    deleteFromLocalStorage(targetTaskEdit)
+    addTaskToUI(taskTitle, taskAbout, targetTaskEdit)
+    addTaskToLocalStorage(taskTitle, taskAbout, targetTaskEdit)
+
+    targetTaskEdit = -1
+    editMenu.style.visibility = "hidden"
+    editMenu.style.height = "0"
+    blackBackground.style.visibility = "hidden"
+    blackBackground.style.height = "0"
+})
+
+cancelEditTaskButton.addEventListener('click', function (event) {
+    targetTaskEdit = -1
+    editMenu.style.visibility = "hidden"
+    editMenu.style.height = "0"
+    blackBackground.style.visibility = "hidden"
+    blackBackground.style.height = "0"
 })
 
 function loadTasksFromLocalStorage() {
@@ -150,10 +183,19 @@ function addTaskToUI(taskTitle, taskAbout, id) {
 
     const shareTask = taskCardContainer.querySelector('.share-task-button')
     shareTask.addEventListener('click', function (event) {
-        targetTaskShare = targetTaskDelete = tasks.length - 1
+        targetTaskShare = targetTaskDelete = id
         blackBackground.style.visibility = "visible"
         shareMenu.style.visibility = "visible"
         shareMenu.style.height = "76px"
+    })
+
+    const editTask = taskCardContainer.querySelector('.edit-task-button')
+    editTask.addEventListener('click', function (event) {
+        targetTaskEdit = targetTaskDelete = id
+        blackBackground.style.visibility = "visible"
+
+        editMenu.style.visibility = "visible"
+        editMenu.style.height = "80%"
     })
 
     tasks.push({ id: id, taskTitle: taskTitle, taskAbout: taskAbout })
