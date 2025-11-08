@@ -1,0 +1,402 @@
+@media (max-width: 1600px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    background-color: #1b1a17;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  p,
+  h1,
+  a,
+  input {
+    margin: 0;
+    color: #ffffff;
+    font-family: "Inter";
+  }
+
+  .share-task-button,
+  .edit-task-button,
+  .about-task-button,
+  .task-card,
+  .cancell-delete-task-button,
+  .delete-task-buttons,
+  .round-share-button,
+  .confirm-edit-task-button,
+  .cancel-edit-task-button:hover {
+    cursor: pointer;
+  }
+
+  .add-task-container {
+    width: 85%;
+    margin: 20px;
+    display: flex;
+    height: 70px;
+  }
+
+  .add-task-inputs-container {
+    width: 77%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+  }
+
+  .add-task-inputs-container input {
+    border-color: #ff8303;
+    border-radius: 4px;
+    height: 32px;
+    width: 100%;
+    max-height: 32px;
+    background-color: #1f1e1b;
+    color: #f0e3caa3;
+    border-style: solid;
+    box-sizing: border-box;
+  }
+
+  .add-task-button {
+    width: 72px;
+    height: 70px;
+    background: url("/WebLabTwo/www/assets/images/Property\ 1=Default.png");
+    margin-left: 10px;
+    background-repeat: no-repeat;
+  }
+
+  .add-task-button:hover {
+    background: url("/WebLabTwo/www/assets/images/Property\ 1=Variant2_hover.png");
+    cursor: pointer;
+  }
+
+  .no-task-container {
+    margin-top: 15%;
+    width: 100%;
+    display: block;
+    visibility: visible;
+  }
+
+  .text-no-task-container {
+    margin: auto;
+    width: 100px;
+  }
+
+  .text-no-task-container p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: 24px;
+  }
+
+  .wall-no-task {
+    margin: auto;
+    width: 60px;
+    height: 3px;
+    background-color: #ff8303;
+    border-radius: 3px;
+  }
+
+  .tasks-container {
+    margin: 20px;
+    width: 85%;
+    height: auto;
+    display: grid;
+    row-gap: 10px;
+  }
+
+  .task-card {
+    width: 100%;
+    height: 72px;
+    background-color: #242320;
+    border: 2px solid;
+    border-color: #a35709;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+  }
+
+  .delete-button-task-card {
+    width: 32px;
+    height: 32px;
+    background: url("/WebLabTwo/www/assets/images/Close\ 1=Default.png");
+    margin-right: 10px;
+  }
+
+  .delete-button-task-card:hover {
+    cursor: pointer;
+    background: url("/WebLabTwo/www/assets/images/Close\ 1=Variant2_hover.png");
+  }
+
+  .text-task-card {
+    margin-left: 10px;
+    font-family: "Inter";
+    font-size: 14px;
+    color: #f0e3ca;
+  }
+
+  .text-task-card h1 {
+    font-size: 22px;
+    color: #f0e3ca;
+  }
+
+  .menu-task-container {
+    visibility: hidden;
+    height: 0;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  .menu-task-container.visible {
+    visibility: visible;
+    height: 36px;
+  }
+
+  .share-task-button {
+    margin-left: 60%;
+    width: 36px;
+    height: 36px;
+    background: url("/WebLabTwo/www/assets/images/Share1=Default.png");
+  }
+
+  .share-task-button:hover {
+    background: url("/WebLabTwo/www/assets/images/Share\ 1=Variant2_hover.png");
+  }
+
+  .edit-task-button {
+    width: 36px;
+    height: 36px;
+    background: url("/WebLabTwo/www/assets/images/Edit\ 1=Default.png");
+  }
+
+  .edit-task-button:hover {
+    background: url("/WebLabTwo/www/assets/images/Edit\ 1=Variant2_hover.png");
+  }
+
+  .about-task-button {
+    width: 36px;
+    height: 36px;
+    background: url("/WebLabTwo/www/assets/images/About\ 1=Default.png");
+  }
+
+  .about-task-button:hover {
+    background: url("/WebLabTwo/www/assets/images/About\ 1=Variant2_hover.png");
+  }
+
+  .black-background {
+    visibility: hidden;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .edit-task-container {
+    visibility: hidden;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /*height: 80%;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .edit-task {
+    width: 90%;
+    height: 100%;
+    z-index: 3;
+    border-radius: 4px;
+    background-color: #1b1a17;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  .edit-task-inputs-container input {
+    margin-top: 20px;
+    border-color: #ff8303;
+    border-radius: 4px;
+    height: 32px;
+    width: 100%;
+    background-color: #1f1e1b;
+    color: #f0e3caa3;
+    border-style: solid;
+    box-sizing: border-box;
+  }
+
+  .edit-task-inputs-container input:last-child {
+    margin-top: 10px;
+    height: 90%;
+    width: 100%;
+  }
+
+  #inputEditTaskAbout::placeholder {
+    text-align: start;
+  }
+
+  .edit-task-inputs-container {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit-buttons-container {
+    margin-top: 10px;
+    width: 50%;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .confirm-edit-task-button,
+  .cancel-edit-task-button {
+    background-color: #242320;
+    width: 64px;
+    height: 100%;
+    height: auto;
+    border-color: #a35709;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .confirm-edit-task-button p,
+  .cancel-edit-task-button p {
+    font-size: 10px;
+  }
+
+  .confirm-edit-task-button:hover,
+  .cancel-edit-task-button:hover {
+    border-color: #ff8303;
+  }
+
+  .delete-task-container {
+    visibility: hidden;
+    height: 0;
+    z-index: 2;
+    width: 70%;
+    /*height: 20%;*/
+    background-color: #1b1a17;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .delete-task-horizontal-wall {
+    width: 100%;
+    height: 4px;
+    background-color: #a35709;
+  }
+
+  .delete-task-container h1 {
+    margin-top: 15%;
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .delete-task-buttons-container {
+    width: 100%;
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .delete-task-buttons {
+    display: flex;
+    height: 30px;
+    width: 70%;
+    justify-content: space-between;
+  }
+
+  .confirm-delete-task-button,
+  .cancel-delete-task-button {
+    background-color: #242320;
+    width: 40%;
+    height: 100%;
+    height: auto;
+    border-color: #a35709;
+    border-radius: 1px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .confirm-delete-task-button:hover,
+  .cancel-delete-task-button:hover {
+    border-color: #ff8303;
+  }
+
+  .share-menu-container {
+    visibility: hidden;
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+  }
+
+  .share-menu {
+    background-color: #1b1a17;
+    height: 80%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .share-menu .round-share-button:first-child {
+    margin-left: 20px;
+  }
+
+  .share-menu .round-share-button:last-child {
+    margin-right: 20px;
+  }
+
+  .round-share-button {
+    width: 48px;
+    height: 48px;
+    background-color: #23221f;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .round-share-button:hover {
+    background-color: #55534d;
+  }
+
+  .round-share-button img {
+    width: 21px;
+    height: 21px;
+  }
+}
